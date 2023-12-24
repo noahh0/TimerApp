@@ -1,0 +1,61 @@
+body {
+  background-color: grey;
+}
+
+header {
+  color: azure;
+  text-align: center;
+  font-size: 4em;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+#timer {
+  width: 600px;
+  height: 300px;
+  margin: 180px;
+  border: 5px solid black;
+  background-color: darkgrey;
+  border-radius: 12px;
+}
+
+#displays, #buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 4em;
+}
+
+.display {
+  width: 25%;
+  margin: auto;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+button {
+  width: 25%;
+  border: 3px solid black;
+  margin: auto;
+  font-size: 0.5em;
+}
+
+#start {
+  background-color: green;
+}
+
+#pause {
+  background-color: darkred;
+}
+
+#clear {
+  background-color: darkcyan;
+}
+
+footer {
+  text-align: center;
+}

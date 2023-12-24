@@ -13,11 +13,21 @@
   </header>
   <main class="main-content">
     <div id="timer">
-      <input id="display" type="text" readonly="false">
-      <br>
-      <button onclick="">START</button>
-      <button onclick="">PAUSE</button>
-      <button onclick="">CLEAR</button>
+      <div id="displays">
+        <input class="display" id="display-hours" type="text" maxlength="2" 
+               oninput="">
+        <p>:</p>
+        <input class="display" id="display-minutes" type="text" maxlength="2" 
+               oninput="">
+        <p>:</p>
+        <input class="display" id="display-seconds" type="text" maxlength="2" 
+               oninput="">
+      </div>
+      <div id="buttons">
+        <button id="start" onclick="">START</button>
+        <button id="pause" onclick="">PAUSE</button>
+        <button id="clear" onclick="">CLEAR</button>
+      </div>
     </div>
   </main>
   <footer class="site-footer">
