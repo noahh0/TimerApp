@@ -15,13 +15,13 @@
     <div id="timer">
       <div id="displays">
         <input class="display" id="display-hours" type="text" maxlength="2" 
-               oninput="">
+               onchange="fixDisplay(this)">
         <p>:</p>
         <input class="display" id="display-minutes" type="text" maxlength="2" 
-               oninput="">
+               onchange="fixDisplay(this)">
         <p>:</p>
         <input class="display" id="display-seconds" type="text" maxlength="2" 
-               oninput="">
+               onchange="fixDisplay(this)">
       </div>
       <div id="buttons">
         <button id="start" onclick="">START</button>
