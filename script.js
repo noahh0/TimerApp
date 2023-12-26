@@ -17,7 +17,8 @@ function fixDisplay(display) {
 }
 
 /**
- *
+ * Decrements the time on the display by one second, stopping the timer at 00:00:00
+ * TODO: alert on reaching 00:00:00, not after 1s
  */
 function decrementTimer() {
   if (displays[2].value === "00") {
@@ -39,7 +40,7 @@ function decrementTimer() {
 }
 
 /**
- *
+ * Pauses the timer countdown and allows inputs to be edited
  */
 function pauseTimer() {
   clearInterval(currentTimer);
@@ -48,7 +49,7 @@ function pauseTimer() {
 }
 
 /**
- *
+ * Pauses the timer and plays an alert noise
  */
 function timerAlert() {
   pauseTimer();
@@ -56,7 +57,7 @@ function timerAlert() {
 }
 
 /**
- *
+ * Starts the timer countdown and prevents inputs from being edited
  */
 function startTimer() {
   displays.forEach((display) => display.setAttribute("readonly", "readonly"));
@@ -65,12 +66,12 @@ function startTimer() {
 }
 
 /**
- *
+ * Pauses the timer and resets the display to 00:05:00
  */
 function clearDisplay() {
   pauseTimer();
   displays.forEach(
-    (input) => (input.value = input.id == "display-minutes" ? "05" : "00")
+    (display) => (display.value = display.id == "display-minutes" ? "05" : "00")
   );
 }
 
