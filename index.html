@@ -4,46 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Timer</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="style2.css" />
+    <script type="module" src="script2.js"></script>
   </head>
   <body>
     <header class="site-header">
       <div id="site-title">Timer App</div>
     </header>
     <main class="main-content">
-      <div id="timer">
-        <div id="displays">
-          <input
-            class="display"
-            id="display-hours"
-            type="text"
-            maxlength="2"
-            onchange="fixDisplay(this)"
-          />
-          <p>:</p>
-          <input
-            class="display"
-            id="display-minutes"
-            type="text"
-            maxlength="2"
-            onchange="fixDisplay(this)"
-          />
-          <p>:</p>
-          <input
-            class="display"
-            id="display-seconds"
-            type="text"
-            maxlength="2"
-            onchange="fixDisplay(this)"
-          />
-        </div>
-        <div id="buttons">
-          <button id="start" onclick="startTimer()">START</button>
-          <button id="pause" onclick="pauseTimer()">PAUSE</button>
-          <button id="clear" onclick="clearDisplay()">CLEAR</button>
-        </div>
-      </div>
+      <div id="timers"></div>
     </main>
     <footer class="site-footer">
       <p>A programming project by Noah H using JavaScript, HTML, and CSS.</p>

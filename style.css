@@ -13,7 +13,7 @@ main {
   justify-content: center;
 }
 
-#timer {
+.timer {
   width: 600px;
   height: 300px;
   margin: 180px;
@@ -22,8 +22,8 @@ main {
   border-radius: 12px;
 }
 
-#displays,
-#buttons {
+.timer-displays,
+.timer-controls {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -31,29 +31,29 @@ main {
   font-size: 4em;
 }
 
-.display {
+.timer-display {
   width: 25%;
   margin: auto;
   font-size: 1.5em;
   text-align: center;
 }
 
-button {
+.timer-control {
   width: 25%;
   border: 3px solid black;
   margin: auto;
   font-size: 0.5em;
 }
 
-#start {
+.start {
   background-color: green;
 }
 
-#pause {
+.pause {
   background-color: darkred;
 }
 
-#clear {
+.clear {
   background-color: darkcyan;
 }
 
