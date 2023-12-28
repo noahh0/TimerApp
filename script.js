@@ -1,8 +1,12 @@
 let currentTimer;
-let displays = document.querySelectorAll(".display");
-let startButton = document.querySelector("#start");
-let pauseButton = document.querySelector("#pause");
-let clearButton = document.querySelector("#clear");
+let currentAlarm;
+
+const displays = document.querySelectorAll(".display");
+const startButton = document.querySelector("#start");
+const pauseButton = document.querySelector("#pause");
+const clearButton = document.querySelector("#clear");
+
+const alarmAudio = new Audio("alarm.mp3"); // TODO: fix background audio
 
 /**
  * Fixes the display of an input to maintain a valid time format
@@ -17,33 +21,42 @@ function fixDisplay(display) {
 }
 
 /**
- * Decrements the time on the display by one second, stopping the timer at 00:00:00
- * TODO: alert on reaching 00:00:00, not after 1s
+ * Decrements the time on the display by one second
+ * Stops the timer and plays an alarm at 00:00:00
  */
 function decrementTimer() {
-  if (displays[2].value === "00") {
-    if (displays[1].value === "00") {
-      if (displays[0].value === "00") {
-        timerAlert();
-      } else {
-        displays[0].value = String(displays[0].value - 1).padStart(2, "0");
-        displays[1].value = "59";
-        displays[2].value = "59";
-      }
-    } else {
-      displays[1].value = String(displays[1].value - 1).padStart(2, "0");
-      displays[2].value = "59";
-    }
-  } else {
-    displays[2].value = String(displays[2].value - 1).padStart(2, "0");
+  displays[2].value =
+    displays[2].value === "00"
+      ? "59"
+      : String(displays[2].value - 1).padStart(2, "0");
+  displays[1].value =
+    displays[2].value === "59"
+      ? displays[1].value === "00"
+        ? "59"
+        : String(displays[1].value - 1).padStart(2, "0")
+      : displays[1].value;
+  displays[0].value =
+    displays[1].value === "59" && displays[2].value === "59"
+      ? String(displays[0].value - 1).padStart(2, "0")
+      : displays[0].value;
+  if (
+    displays[0].value === "00" &&
+    displays[1].value === "00" &&
+    displays[2].value === "00"
+  ) {
+    timerAlert();
   }
 }
 
 /**
  * Pauses the timer countdown and allows inputs to be edited
+ * Pauses the alert noise if it is playing
  */
 function pauseTimer() {
   clearInterval(currentTimer);
+  clearInterval(currentAlarm);
+  alarmAudio.pause();
+  alarmAudio.currentTime = 0;
   displays.forEach((display) => display.removeAttribute("readonly"));
   startButton.removeAttribute("disabled");
 }
@@ -53,7 +66,8 @@ function pauseTimer() {
  */
 function timerAlert() {
   pauseTimer();
-  // play alert sound
+  alarmAudio.play();
+  currentAlarm = setInterval(() => alarmAudio.play(), 5000);
 }
 
 /**
@@ -63,6 +77,13 @@ function startTimer() {
   displays.forEach((display) => display.setAttribute("readonly", "readonly"));
   startButton.setAttribute("disabled", "disabled");
   currentTimer = setInterval(() => decrementTimer(), 1000);
+  if (
+    displays[0].value === "00" &&
+    displays[1].value === "00" &&
+    displays[2].value === "00"
+  ) {
+    timerAlert();
+  }
 }
 
 /**
