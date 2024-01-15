@@ -10,6 +10,7 @@ export class Timer {
     this.startButton = this.timerDiv.querySelector(".start");
     this.pauseButton = this.timerDiv.querySelector(".pause");
     this.clearButton = this.timerDiv.querySelector(".clear");
+    this.deleteButton = this.timerDiv.querySelector(".delete-timer");
     this.alarmAudio = new Audio("alarm.mp3");
     this.alarmInterval = 5000;
     this.currentTimer;
@@ -19,13 +20,18 @@ export class Timer {
   }
 
   /**
-   * Creates a div to display the timer on the page
+   * Creates and returns a div to display the timer on the page
    * @returns {HTMLElement} - The div that was created
    */
   createHTML = () => {
     let div = document.createElement("div");
     div.classList.add("timer");
     div.innerHTML = `
+      <div class="timer-header">
+        <button class="align-row" disabled></button>
+        <input type="text" class="timer-name" value="Timer" />
+        <button class="delete-timer">X</button>
+      </div>
       <div class="timer-displays">
         <input type="text" class="timer-display hours" maxLength="2" />
         <p>:</p>
@@ -52,6 +58,7 @@ export class Timer {
     this.startButton.addEventListener("click", this.startTimer);
     this.pauseButton.addEventListener("click", this.pauseTimer);
     this.clearButton.addEventListener("click", this.clearDisplay);
+    this.deleteButton.addEventListener("click", this.removeTimer);
   };
 
   /**
@@ -61,7 +68,7 @@ export class Timer {
   fixDisplay = (display) => {
     display.value = /.*[^\d].*/.test(display.value)
       ? "00"
-      : display.classList.contains("hours") && display.value > 59
+      : !display.classList.contains("hours") && display.value > 59
       ? "59"
       : display.value.padStart(2, "0");
   };
@@ -142,5 +149,13 @@ export class Timer {
       (display) =>
         (display.value = display.classList.contains("minutes") ? "05" : "00")
     );
+  };
+
+  /**
+   * Removes the timer from the page
+   */
+  removeTimer = () => {
+    this.clearDisplay();
+    this.timerDiv.remove();
   };
 }
